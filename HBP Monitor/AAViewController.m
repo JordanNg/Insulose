@@ -10,8 +10,7 @@
 #import "BloodSugar+Create.h"
 #import "AAAppDelegate.h"
 #import "AADataEntryVC.h"
-
-static const NSInteger kNumLinePoints = 7;
+#import "AALineGraphView.h"
 
 @interface AAViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,7 +18,7 @@ static const NSInteger kNumLinePoints = 7;
 @property (weak, nonatomic) IBOutlet UIButton *addMeasurementButton;
 @property (weak, nonatomic) IBOutlet UIButton *editMeasurementButton;
 @property (strong, nonatomic) BloodSugar *currentlyDisplayedReading;
-@property (strong, nonatomic) NSArray *lineGraphReadings;
+@property (weak, nonatomic) IBOutlet AALineGraphView *lineGraphView;
 
 @end
 
@@ -29,7 +28,7 @@ static const NSInteger kNumLinePoints = 7;
 {
     self.readings = [BloodSugar allReadingsInManagedObjectContext:self.context];
     [self.tableView reloadData];
-    [self.myGraph reloadGraph];
+    [self.lineGraphView reloadGraph];
 }
 
 - (void)recordCurrentSelectionAtIndexPath:(NSIndexPath *)indexPath
@@ -80,13 +79,6 @@ static const NSInteger kNumLinePoints = 7;
     [super viewDidLoad];
     
     [self setEditButtonEnabled:NO];
-    
-    self.myGraph.enableBezierCurve = NO;
-    self.myGraph.widthLine = 4;
-    
-    self.myGraph.colorTop = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:0.0/255.0 alpha:1.0];
-    self.myGraph.colorBottom = [UIColor colorWithRed:255.0/255.0 green:223.0/255.0 blue:0.0/255.0 alpha:1.0];
-    self.myGraph.colorXaxisLabel = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,37 +88,9 @@ static const NSInteger kNumLinePoints = 7;
     [self reloadData];
 }
 
-- (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    if (![self.lineGraphReadings count]) return 0;
-    return MIN(kNumLinePoints, [self.lineGraphReadings count]); // Number of points in the graph.
-}
-
-- (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    if (![self.lineGraphReadings count]) return 0;
-    BloodSugar *reading = [self.lineGraphReadings objectAtIndex:index];
-    return [reading.bloodReading floatValue]; // The value of the point on the Y-Axis for the index.
-}
-
-- (NSInteger)numberOfGapsBetweenLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
-    return 0; // The number of hidden labels between each displayed label.
-}
-
-- (UIColor *)lineGraph:(BEMSimpleLineGraphView *)graph lineColorForIndex:(NSInteger)index {
-    return [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
-}
-
-- (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    if (![self.lineGraphReadings count]) return @"";
-    BloodSugar *reading = [self.lineGraphReadings objectAtIndex:index];
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"MMM/dd"];
-    NSString *dateString = [format stringFromDate:reading.readingTime];
-    return [NSString stringWithFormat:@"%@", dateString];
-}
-
 - (void)setReadings:(NSArray *)readings{
     _readings = readings;
-    NSInteger numReadings = MIN(kNumLinePoints, [readings count]);
+    NSInteger numReadings = MIN([self.lineGraphView numberOfLinePoints], [readings count]);
     NSArray *smallArray = [readings subarrayWithRange:NSMakeRange(0, numReadings)];
     
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:[smallArray count]];
@@ -134,7 +98,7 @@ static const NSInteger kNumLinePoints = 7;
     for (id element in enumerator) {
         [array addObject:element];
     }
-    self.lineGraphReadings = array;
+    self.lineGraphView.lineGraphReadings = array;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

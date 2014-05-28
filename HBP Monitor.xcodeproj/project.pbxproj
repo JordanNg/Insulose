@@ -29,6 +29,7 @@
 		B0EDB52418EE1F5200A4E438 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0EDB50618EE1F5200A4E438 /* UIKit.framework */; };
 		B0EDB52C18EE1F5200A4E438 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0EDB52A18EE1F5200A4E438 /* InfoPlist.strings */; };
 		B0EDB52E18EE1F5200A4E438 /* HBP_MonitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0EDB52D18EE1F5200A4E438 /* HBP_MonitorTests.m */; };
+		CFF2424319369E5F007EFCF4 /* AALineGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CFF2424219369E5F007EFCF4 /* AALineGraphView.m */; };
 		FFA07F670DEB459F8787A627 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89646B1AB36447349DAA30F4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		B0EDB52918EE1F5200A4E438 /* HBP MonitorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HBP MonitorTests-Info.plist"; sourceTree = "<group>"; };
 		B0EDB52B18EE1F5200A4E438 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B0EDB52D18EE1F5200A4E438 /* HBP_MonitorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HBP_MonitorTests.m; sourceTree = "<group>"; };
+		CFF2424119369E5F007EFCF4 /* AALineGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AALineGraphView.h; sourceTree = "<group>"; };
+		CFF2424219369E5F007EFCF4 /* AALineGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AALineGraphView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				B027714E1905E6DE0046D6E1 /* AADataEntryVC.m */,
 				B0EDB51718EE1F5200A4E438 /* AAViewController.h */,
 				B0EDB51818EE1F5200A4E438 /* AAViewController.m */,
+				CFF2424119369E5F007EFCF4 /* AALineGraphView.h */,
+				CFF2424219369E5F007EFCF4 /* AALineGraphView.m */,
 				B0EDB51A18EE1F5200A4E438 /* Images.xcassets */,
 				B0EDB50918EE1F5200A4E438 /* Supporting Files */,
 			);
@@ -363,6 +368,7 @@
 				B02771401905DC3E0046D6E1 /* Blood Pressure.xcdatamodeld in Sources */,
 				B02771481905DDCE0046D6E1 /* BloodSugar+Create.m in Sources */,
 				B0EDB51318EE1F5200A4E438 /* AAAppDelegate.m in Sources */,
+				CFF2424319369E5F007EFCF4 /* AALineGraphView.m in Sources */,
 				B0EDB51918EE1F5200A4E438 /* AAViewController.m in Sources */,
 				B0EDB50F18EE1F5200A4E438 /* main.m in Sources */,
 				B027714C1905E2E50046D6E1 /* BloodSugar.m in Sources */,

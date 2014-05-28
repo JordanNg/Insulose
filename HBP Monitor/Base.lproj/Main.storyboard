@@ -59,13 +59,10 @@
                                         <rect key="frame" x="9" y="510" width="589" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-bB-Dsu" customClass="BEMSimpleLineGraphView">
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-bB-Dsu" customClass="AALineGraphView">
                                                 <rect key="frame" x="12" y="13" width="564" height="130"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="SEL-6Z-xnl"/>
-                                                </connections>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -124,7 +121,7 @@
                     <connections>
                         <outlet property="addMeasurementButton" destination="CIP-Sj-ODU" id="icG-lp-g4x"/>
                         <outlet property="editMeasurementButton" destination="zrH-qR-uct" id="9BT-8N-cSM"/>
-                        <outlet property="myGraph" destination="Ik8-bB-Dsu" id="tvD-oB-RhC"/>
+                        <outlet property="lineGraphView" destination="Ik8-bB-Dsu" id="abM-b7-G7R"/>
                         <outlet property="tableView" destination="y1x-Kg-voG" id="Z9H-Nx-j1q"/>
                     </connections>
                 </viewController>
