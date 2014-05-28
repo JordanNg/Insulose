@@ -64,11 +64,6 @@ static const NSInteger kNumLinePoints = 7;
 {
     _context = context;
     [self reloadData];
-//    if ([self.readings count]) {
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//        [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-//        [self recordCurrentSelectionAtIndexPath:indexPath];
-//    }
 }
 
 -(NSString *)formattedReadingDate:(NSDate *)date
