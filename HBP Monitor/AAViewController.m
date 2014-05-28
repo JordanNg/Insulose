@@ -17,6 +17,7 @@ static const NSInteger kNumLinePoints = 7;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *readings;
 @property (weak, nonatomic) IBOutlet UIButton *addMeasurementButton;
+@property (weak, nonatomic) IBOutlet UIButton *editMeasurementButton;
 @property (strong, nonatomic) BloodSugar *currentlyDisplayedReading;
 @property (strong, nonatomic) NSArray *lineGraphReadings;
 
@@ -33,11 +34,30 @@ static const NSInteger kNumLinePoints = 7;
 
 - (void)recordCurrentSelectionAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"record...");
+    [self setEditButtonEnabled:NO];
+    
     if ([self.readings count] && indexPath.row < [self.readings count]) {
-        NSLog(@"reading at: %@", self.readings[indexPath.row]);
         self.currentlyDisplayedReading = self.readings[indexPath.row];
+        if (self.currentlyDisplayedReading) {
+            [self setEditButtonEnabled:YES];
+        }
     }
+}
+
+- (void)setEditButtonEnabled:(BOOL)enabled
+{
+    [UIView animateWithDuration:0.25f delay:0.0f
+                        options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState
+                     animations:^{
+                         if (enabled) {
+                             self.editMeasurementButton.enabled = YES;
+                             self.editMeasurementButton.alpha = 1.0;
+                         } else {
+                             self.editMeasurementButton.enabled = NO;
+                             self.editMeasurementButton.alpha = 0.5;
+                         }
+                        }
+                     completion:nil];
 }
 
 - (void)setContext:(NSManagedObjectContext *)context
@@ -63,6 +83,8 @@ static const NSInteger kNumLinePoints = 7;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self setEditButtonEnabled:NO];
     
     self.myGraph.enableBezierCurve = NO;
     self.myGraph.widthLine = 4;

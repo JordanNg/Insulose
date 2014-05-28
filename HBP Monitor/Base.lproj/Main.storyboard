@@ -76,7 +76,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CIP-Sj-ODU">
-                                        <rect key="frame" x="9" y="0.0" width="278" height="101"/>
+                                        <rect key="frame" x="307" y="0.0" width="291" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0039215686274509803" green="0.65098039215686276" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="48"/>
@@ -88,7 +88,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrH-qR-uct">
-                                        <rect key="frame" x="315" y="0.0" width="278" height="101"/>
+                                        <rect key="frame" x="9" y="0.0" width="290" height="101"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0039215686269999999" green="0.65098039220000004" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="48"/>
@@ -123,6 +123,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="addMeasurementButton" destination="CIP-Sj-ODU" id="icG-lp-g4x"/>
+                        <outlet property="editMeasurementButton" destination="zrH-qR-uct" id="9BT-8N-cSM"/>
                         <outlet property="myGraph" destination="Ik8-bB-Dsu" id="tvD-oB-RhC"/>
                         <outlet property="tableView" destination="y1x-Kg-voG" id="Z9H-Nx-j1q"/>
                     </connections>
