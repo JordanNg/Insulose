@@ -7,7 +7,8 @@
 //
 
 #import "AADataEntryVC.h"
-#import "BloodSugar.h"
+#import "BloodSugar+Create.h"
+#import "AAAppDelegate.h"
 
 @interface AADataEntryVC () <UITextViewDelegate>
 
@@ -25,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *markerXConstraint;
 @property (weak, nonatomic) IBOutlet UIView *scaleFrameView;
 
+@property (strong, nonatomic) NSManagedObjectContext *context;
+
 @end
 
 @implementation AADataEntryVC
@@ -40,6 +43,15 @@
     [self displayReading:self.currentlyDisplayedReading];
 }
 
+- (NSManagedObjectContext *)context
+{
+    if (!_context) {
+        AAAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        _context = appDelegate.managedObjectContext;
+    }
+    return _context;
+}
+
 - (void)displayReading:(BloodSugar *)reading
 {
     if (!reading) return;
@@ -51,40 +63,26 @@
     [self animateMarker];
 }
 
-- (IBAction)cancelMeasurementPressed:(UIButton *)sender {
-    
-    //swithces back to the Add Measurement Button when cancel button is pressed
-    
-    //Resets data
-//    [self reloadData];
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    
-//    BloodSugar *reading = self.readings[indexPath.row];
-//    [self displayReading:reading];
-}
-
-- (IBAction)saveButtonPressed:(UIButton *)sender {
-    
+- (IBAction)saveButtonPressed:(UIButton *)sender
+{
     [self saveReading];
 }
 
-- (void)saveReading {
+- (void)saveReading
+{    
+    if (!self.currentlyDisplayedReading) {
+        self.currentlyDisplayedReading = [BloodSugar createReading:@([self.readingTextField.text intValue])
+                                                       readingTime:self.datePicker.date
+                                                             notes:self.notesTextView.text
+                                              managedObjectContext:self.context];
+    }
+    self.currentlyDisplayedReading.bloodReading = @([self.readingTextField.text intValue]);
+    self.currentlyDisplayedReading.readingTime =self.datePicker.date;
+    self.currentlyDisplayedReading.notes = self.notesTextView.text;
     
-//    if (!self.currentlyDisplayedReading) {
-//        self.currentlyDisplayedReading = [BloodSugar createReading:@([self.readingTextField.text intValue])
-//                                                       readingTime:self.datePicker.date
-//                                                             notes:self.notesTextView.text
-//                                              managedObjectContext:self.context];
-//    }
-//    self.currentlyDisplayedReading.bloodReading = @([self.readingTextField.text intValue]);
-//    self.currentlyDisplayedReading.readingTime =self.datePicker.date;
-//    self.currentlyDisplayedReading.notes = self.notesTextView.text;
-//    
-//    [self reloadData];
+    [self performSegueWithIdentifier:@"unwind to history" sender:nil];
     
-    //Resets data
+    // Resets data
 //    [self reloadData];
     
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];

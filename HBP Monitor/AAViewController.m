@@ -94,6 +94,13 @@ static const NSInteger kNumLinePoints = 7;
     self.myGraph.colorXaxisLabel = [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1.0];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self reloadData];
+}
+
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
     if (![self.lineGraphReadings count]) return 0;
     return MIN(kNumLinePoints, [self.lineGraphReadings count]); // Number of points in the graph.
@@ -164,7 +171,6 @@ static const NSInteger kNumLinePoints = 7;
     if ([segue.identifier isEqualToString:@"edit measurement"]) {
         AADataEntryVC *vc = segue.destinationViewController;
         vc.currentlyDisplayedReading = self.currentlyDisplayedReading;
-        NSLog(@"showing: %@", self.currentlyDisplayedReading);
     }
 }
 
