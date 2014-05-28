@@ -338,6 +338,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </state>
                                         <connections>
                                             <action selector="cancelMeasurementPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OhT-bA-qQ2"/>
+                                            <segue destination="917-9M-aWl" kind="unwind" unwindAction="unwindHistoryVC:" id="gAJ-Mh-2ar"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHP-9e-KQz">
@@ -383,6 +384,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIr-Y8-Yb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="917-9M-aWl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2476" y="-429"/>
         </scene>
