@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="y1x-Kg-voG">
-                                <rect key="frame" x="0.0" y="0.0" width="398" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="398" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -374,9 +374,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <connections>
                         <outlet property="cancelButton" destination="Txo-Tr-9j2" id="Nkl-Bg-FsE"/>
                         <outlet property="datePicker" destination="MZn-TY-gf4" id="say-4s-h0L"/>
+                        <outlet property="markerXConstraint" destination="9te-Lb-Ief" id="hb9-y3-1hu"/>
                         <outlet property="notesTextView" destination="wc2-zN-lZe" id="QFt-oF-NSl"/>
                         <outlet property="readingTextField" destination="93i-q4-7Mc" id="IUp-GS-NLW"/>
                         <outlet property="saveButton" destination="mHP-9e-KQz" id="phf-EO-WGJ"/>
+                        <outlet property="scaleFrameView" destination="LzK-jK-8qy" id="3rz-OE-xiS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mIr-Y8-Yb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
