@@ -81,16 +81,6 @@
     self.currentlyDisplayedReading.notes = self.notesTextView.text;
     
     [self performSegueWithIdentifier:@"unwind to history" sender:nil];
-    
-    // Resets data
-//    [self reloadData];
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
-    
-//    BloodSugar *reading = self.readings[indexPath.row];
-//    [self displayReading:reading];
-    
 }
 
 // Call this method somewhere in your view controller setup code.
@@ -151,7 +141,7 @@
     self.activeInput = nil;
 }
 
--(CGFloat) markerXPosition
+-(CGFloat)markerXPosition
 {
     
     CGFloat reading = [self.readingTextField.text floatValue];
@@ -165,7 +155,7 @@
     return x;
 }
 
-- (void) animateMarker
+- (void)animateMarker
 {
     self.markerXConstraint.constant = [self markerXPosition];
     [UIView animateWithDuration:2.0 delay:0.0
@@ -176,19 +166,40 @@
                      completion:nil];
     
 }
-- (void) readingTextFieldChanged
+
+
+#pragma mark - Text FIELD Delegates
+
+- (void)readingTextFieldChanged
 {
     [self animateMarker];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    
-    if([text isEqualToString:@"\n"])
-    {
-        [self saveReading];
-        
-        [textView resignFirstResponder];
-        return NO;
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (textField == self.readingTextField) {
+        if([string isEqualToString:@"\n"])
+        {
+            [textField resignFirstResponder];
+            [self.notesTextView becomeFirstResponder];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
+#pragma mark - Text VIEW Delegates
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView == self.notesTextView) {
+        if([text isEqualToString:@"\n"]) {
+            [self saveReading];
+            [textView resignFirstResponder];
+            
+            return NO;
+        }
     }
     
     return YES;
