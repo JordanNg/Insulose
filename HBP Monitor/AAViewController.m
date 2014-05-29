@@ -19,12 +19,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *editMeasurementButton;
 @property (strong, nonatomic) BloodSugar *currentlyDisplayedReading;
 @property (weak, nonatomic) IBOutlet AALineGraphView *lineGraphView;
+@property (weak, nonatomic) IBOutlet UIStepper *graphPointsStepper;
 
 @end
 
 @implementation AAViewController
 
--(void)reloadData
+- (void)reloadData
 {
     self.readings = [BloodSugar allReadingsInManagedObjectContext:self.context];
     [self.tableView reloadData];
@@ -79,6 +80,7 @@
     [super viewDidLoad];
     
     [self setEditButtonEnabled:NO];
+    self.graphPointsStepper.value = [self.lineGraphView numberOfLinePoints];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,16 +92,11 @@
 
 - (void)setReadings:(NSArray *)readings{
     _readings = readings;
-    NSInteger numReadings = MIN([self.lineGraphView numberOfLinePoints], [readings count]);
-    NSArray *smallArray = [readings subarrayWithRange:NSMakeRange(0, numReadings)];
-    
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[smallArray count]];
-    NSEnumerator *enumerator = [smallArray reverseObjectEnumerator];
-    for (id element in enumerator) {
-        [array addObject:element];
-    }
-    self.lineGraphView.lineGraphReadings = array;
+    self.lineGraphView.readings = readings;
 }
+
+
+#pragma mark - Table View
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -125,6 +122,9 @@
     [self recordCurrentSelectionAtIndexPath:indexPath];
 }
 
+
+#pragma mark - Segues
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"edit measurement"]) {
@@ -137,6 +137,16 @@
 {
 }
 
+
+#pragma mark - Actions
+
+- (IBAction)graphPointsStepperValueChanged:(UIStepper *)sender
+{
+    [self.lineGraphView setNumberOfLinePoints:sender.value];
+    
+    // set to number of points in graph, in case go over/under the max/min.
+    self.graphPointsStepper.value = [self.lineGraphView numberOfLinePoints];
+}
 
 
 @end

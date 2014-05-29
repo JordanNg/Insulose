@@ -56,11 +56,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KYf-yY-6Yg">
-                                        <rect key="frame" x="9" y="510" width="589" height="154"/>
+                                        <rect key="frame" x="9" y="295" width="589" height="328"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ik8-bB-Dsu" customClass="AALineGraphView">
-                                                <rect key="frame" x="12" y="13" width="564" height="130"/>
+                                                <rect key="frame" x="12" y="13" width="564" height="301"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
@@ -96,6 +96,13 @@
                                             <segue destination="whb-aS-W8Q" kind="push" identifier="edit measurement" id="HI4-kt-9Ep"/>
                                         </connections>
                                     </button>
+                                    <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Xh9-DY-2sx">
+                                        <rect key="frame" x="504" y="631" width="94" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <connections>
+                                            <action selector="graphPointsStepperValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="dR5-Je-Pzz"/>
+                                        </connections>
+                                    </stepper>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -121,6 +128,7 @@
                     <connections>
                         <outlet property="addMeasurementButton" destination="CIP-Sj-ODU" id="icG-lp-g4x"/>
                         <outlet property="editMeasurementButton" destination="zrH-qR-uct" id="9BT-8N-cSM"/>
+                        <outlet property="graphPointsStepper" destination="Xh9-DY-2sx" id="ZkO-2M-woL"/>
                         <outlet property="lineGraphView" destination="Ik8-bB-Dsu" id="abM-b7-G7R"/>
                         <outlet property="tableView" destination="y1x-Kg-voG" id="Z9H-Nx-j1q"/>
                     </connections>

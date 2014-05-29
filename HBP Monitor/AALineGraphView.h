@@ -10,6 +10,6 @@
 #import "BEMSimpleLineGraphView.h"
 
 @interface AALineGraphView : BEMSimpleLineGraphView
-@property (strong, nonatomic) NSArray *lineGraphReadings;
+@property (strong, nonatomic) NSArray *readings;
 @property (nonatomic, assign) NSInteger numberOfLinePoints;
 @end
