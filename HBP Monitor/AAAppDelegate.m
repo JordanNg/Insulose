@@ -82,6 +82,8 @@
 {
     // Override point for customization after application launch.
     [self setupManagedDocument];
+    UINavigationController *nc = (UINavigationController *) self.window.rootViewController;
+    nc.navigationBarHidden = YES;
     return YES;
 }
 

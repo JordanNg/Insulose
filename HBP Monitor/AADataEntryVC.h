@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+@class BloodSugar;
 
 @interface AADataEntryVC : UIViewController
+
+@property (strong, nonatomic) BloodSugar *currentlyDisplayedReading;
 
 @end
